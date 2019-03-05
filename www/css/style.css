@@ -1,0 +1,230 @@
+body {
+	font-size: 15px;
+	line-height: 1.6;
+	color: #aaa;
+	background: black url('../images/background.png');
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-position: center top;
+}
+
+h1 {
+	color: #3484D2;
+}
+
+#ajax-spinner {
+	margin: 15px 0 0 15px;
+	padding: 13px;
+	background: white url('../images/spinner.gif') no-repeat;
+    font-size: 0;
+	z-index: 123456;
+	display: none;
+}
+
+div.flash {
+	color: black;
+	background: #FFF9D7;
+	border: 1px solid #E2C822;
+	padding: 1em;
+	margin: 1em 0;
+}
+
+a[href^="#error:"] {
+	background: red;
+	color: white;
+}
+
+form th, form td {
+	vertical-align: top;
+	font-weight: normal;
+}
+
+form th {
+	text-align: right;
+}
+
+form .required label {
+	font-weight: bold;
+}
+
+form .error {
+	color: #D00;
+	font-weight: bold;
+}
+
+/*.obsah{
+    /*box-shadow: 0px 30px 40px rgba(0,0,0,.7);
+}*/
+
+.obsah {
+    position: relative;
+    max-width: 600px;
+    width: 100%;
+    padding: 20px 25px;
+    margin: 40px auto;
+    background: rgba(0,0,0,.75);
+    bottom: 0;
+/*    border-left: solid 1px white;
+    border-right: solid 1px white;
+    border-top: solid 1px white;*/
+    box-shadow: 0px 31px 40px 6px rgba(0,0,0,0.75);
+}
+
+.wiki {
+    background-image: url("../images/wiki.png");
+    position: absolute;
+    right: -30px;
+    top: 110px;
+    width: 60px;
+    height: 60px;
+    z-index: 15;
+}
+
+.forum {
+    background-image: url("../images/forum.png");
+    position: absolute;
+    right: -30px;
+    top: 270px;
+    width: 60px;
+    height: 60px;
+    z-index: 15;
+}
+
+div.facebook {
+    background-image: url("../images/facebook.png");
+    position: absolute;
+    right: -30px;
+    top: 190px;
+    width: 60px;
+    height: 60px;
+    z-index: 15;
+}
+
+.headslinks{
+    width: 150px;
+    text-align: center;
+}
+
+.bord{
+    border-right: solid 2px #95A2C0;
+}
+
+.headlink{
+    text-decoration: none;
+    color: #95A2C0;
+}
+
+a.back-to-top {
+    display: none;
+    width: 60px;
+    height: 60px;
+    text-indent: -9999px;
+    position: fixed;
+    z-index: 999;
+    right: calc(50% - 310px);
+    bottom: 20px;
+    background: url("../images/arrow_up.png") no-repeat center 43%;
+    opacity: 0.4;
+}
+
+.one:after {
+    content: "";
+    height: 1px;
+    /* I've removed the vendor prefixes, if you are looking to support older browsers
+       then refer to older version of this answer.
+    */
+    background: linear-gradient(to right,  rgba(0,0,0,0) 0%,rgba(147,147,147,1) 50%,rgba(0,0,0,0) 100%);
+    display: block;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+.center, h1{
+    text-align: center;
+}
+
+
+.sign{
+    text-align: right;
+    position: relative;
+    right: 0;
+    bottom: 0;
+}
+
+.created{
+    position: absolute;
+    left: 0;
+    bottom: 0;
+}
+
+.article{
+    position: relative;
+}
+
+.event{
+    position: relative;
+    width: 95%;
+    background: rgba(0,0,0,.25);
+    padding-left: 10px;
+    padding-bottom: 10px;
+    padding-right: 10px;
+}
+
+.eventModeration {
+    text-align: right;
+    position: relative;
+    right: 0;
+    top: 0;
+}
+
+.max-width{
+    width: 100%;
+}
+
+/* loading dots */
+
+.loading {
+  color: green;
+}
+
+.loading:after {
+  content: ' .';
+  animation: dots 1s steps(5, end) infinite;}
+
+@keyframes dots {
+  0%, 20% {
+    color: rgba(0,128,0,0);
+    text-shadow:
+      .25em 0 0 rgba(0,0,0,0),
+      .5em 0 0 rgba(0,0,0,0);}
+  40% {
+    color: green;
+    text-shadow:
+      .25em 0 0 rgba(0,0,0,0),
+      .5em 0 0 rgba(0,0,0,0);}
+  60% {
+    text-shadow:
+      .25em 0 0 green,
+      .5em 0 0 rgba(0,0,0,0);}
+  80%, 100% {
+    text-shadow:
+      .25em 0 0 green,
+      .5em 0 0 green;}}
+
+.currentEvent {
+    border: solid 1px rgba(0,128,0,0.9);
+    background-color: rgba(0,25,0,0.60);
+}
+
+textarea {
+    width: 100%;
+    height: 300px;
+}
+
+select, input {
+    width: 100%;
+}
+
+table {
+    width: 95%;
+}

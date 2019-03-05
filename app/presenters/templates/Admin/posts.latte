@@ -1,0 +1,56 @@
+{block title}
+    Novinky
+{/block}
+
+{block content}
+    <table>
+        <tr>
+            <td>
+                Název
+            </td>
+            <td>
+                Publikováno
+            </td>
+            <td>
+                Autor
+            </td>
+        </tr>
+    {foreach $articles as $article}
+        <tr>
+            <td>
+                {$article->title}
+            </td>
+            <td>
+                {$article->created|date:'j. n. Y'}
+            </td>
+            <td>
+                {$article->author->username|capitalize}
+            </td>
+            <td>
+                <a n:href='Admin:edit $article->id'>Upravit</a>
+            </td>
+            <td>
+                <a n:href='Admin:delete! $article->id'>Odstranit</a>
+            </td>
+        </tr>
+    {/foreach}
+    </table>
+
+    <div class="pagination">
+        {if !$paginator->isFirst()}
+            <a n:href="default, 1">První</a>
+            &nbsp;|&nbsp;
+            <a n:href="default, $paginator->page-1">Předchozí</a>
+            &nbsp;|&nbsp;
+        {/if}
+
+        Stránka {$paginator->page} z {$paginator->pageCount}
+
+        {if !$paginator->isLast()}
+            &nbsp;|&nbsp;
+            <a n:href="default, $paginator->page+1">Další</a>
+            &nbsp;|&nbsp;
+            <a n:href="default, $paginator->pageCount">Poslední</a>
+        {/if}
+    </div>
+{/block}

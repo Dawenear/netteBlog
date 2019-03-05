@@ -1,0 +1,90 @@
+{block title}
+    Eventy
+{/block}
+
+{block content}
+
+    {if $startedEvents}
+        <h3 class="center loading">Právě probíhá</h3>
+        {foreach $startedEvents as $startedEvent}
+            <div class="event currentEvent">
+                {if $user->isInRole('admin') || $user->isInRole('storyteller')}
+                    <div class="eventModeration">
+                        <a n:href="Events:edit $startedEvent->id">Uprav event</a>
+                    </div>
+                {/if}
+                <h2 class="center">{$startedEvent->title}</h2>
+                <div>
+                    {if $startedEvent->story}
+                        <a n:href="Events:story $startedEvent->story_id">{$startedEvent->story->name} část {$startedEvent->part}</a>
+                    {else}
+                        Jednorázový
+                    {/if}
+                </div>
+                <div>Kdy: <span class="center loading">Právě probíhá</span></div>
+                <div>Kde: {$startedEvent->place}</div>
+                <span>Popis: {$startedEvent->description}</span><br><br>
+            </div>
+            <br><br>
+        {/foreach}
+    {/if}
+
+    <h1 class="center">Ukončené Eventy</h1>
+    {if $user->isInRole('admin') || $user->isInRole('storyteller')}
+        <div class="eventModeration">
+            <a n:href="Events:create">Vytvoř event</a>
+        </div>
+    {/if}
+
+    <table class="max-width">
+        <tr>
+            <td class="headslinks bord">
+                <a n:href="Events:" class="headlink">Plánované</a>
+            </td>
+            <td class="headslinks">
+                Proběhlé
+            </td>
+        </tr>
+    </table>
+
+    <table class="table">
+        <thead>
+        <tr>
+            <td>
+                Název
+            </td>
+            <td>
+                Kapitola
+            </td>
+            <td>
+                Start
+            </td>
+        </tr>
+        </thead>
+        <tbody>
+        {foreach $events as $event}
+            <tr>
+            <td>
+                <a n:href="Events:detail $event->id">{$event->title}</a>
+            </td>
+            <td>
+                {if $event->story}
+                    <a n:href="Events:story $event->story_id">{$event->story->name} část {$event->part}</a>
+                {else}
+                    Jednorázový
+                {/if}
+            </td>
+            <td>
+                {$event->start}
+            </td>
+            {if $user->isInRole('admin') || $user->isInRole('storyteller')}
+                <td>
+                    <a n:href="Events:edit $event->id">Uprav</a>
+                </td>
+            {/if}
+            </tr>
+        {/foreach}
+        </tbody>
+    </table>
+
+{/block}

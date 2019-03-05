@@ -1,0 +1,67 @@
+{block title}
+    Novinky
+{/block}
+
+{block content}
+
+    {if $startedEvents}
+        <h3 class="center loading">Právě probíhá</h3>
+        {foreach $startedEvents as $startedEvent}
+            <div class="event currentEvent">
+                {if $user->isInRole('admin') || $user->isInRole('storyteller')}
+                    <div class="eventModeration">
+                        <a n:href="Events:edit $startedEvent->id">Uprav event</a>
+                    </div>
+                {/if}
+                <h2 class="center">{$startedEvent->title}</h2>
+                <div>
+                    {if $startedEvent->story}
+                        <a n:href="Events:story $startedEvent->story_id">{$startedEvent->story->name} část {$startedEvent->part}</a>
+                    {else}
+                        Jednorázový
+                    {/if}
+                </div>
+                <div>Kdy: <span class="center loading">Právě probíhá</span></div>
+                <div>Kde: {$startedEvent->place}</div>
+                <span>Popis: {$startedEvent->description}</span><br><br>
+            </div>
+            <br><br>
+        {/foreach}
+    {/if}
+
+    {foreach $articles as $article}
+        <div class="article">
+            <h1 class="center">{$article->title}</h1>
+            <span>{$article->content}</span><br><br>
+            <div class="created">{$article->created|date:'j. n. Y'}</div>
+            <div class="sign">{$article->username}</div>
+            {if $user->isInRole('admin')}
+                <div class="eventModeration">
+                    <a n:href="Admin:edit $article->id">Uprav</a>
+                </div>
+            {/if}
+        </div>
+        <br><br>
+    {/foreach}
+
+    <div class="pagination">
+        {if !$paginator->isFirst()}
+            <a n:href="default, 1">První</a>
+            &nbsp;|&nbsp;
+            <a n:href="default, $paginator->page-1">Předchozí</a>
+            &nbsp;|&nbsp;
+        {/if}
+
+        Stránka {$paginator->page} z {$paginator->pageCount}
+
+        {if !$paginator->isLast()}
+            &nbsp;|&nbsp;
+            <a n:href="default, $paginator->page+1">Další</a>
+            &nbsp;|&nbsp;
+            <a n:href="default, $paginator->pageCount">Poslední</a>
+        {/if}
+    </div>
+{/block}
+
+
+

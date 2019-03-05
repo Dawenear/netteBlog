@@ -1,0 +1,55 @@
+{block title}
+    Eventy
+{/block}
+
+{block content}
+    {foreach $events as $event}
+        {first}
+            <h1>Příběh: {$event->story->name}</h1>
+
+            <table class="table">
+            <thead>
+            <tr>
+                <td>
+                    Název
+                </td>
+                <td>
+                    Část
+                </td>
+                <td>
+                    Start
+                </td>
+            </tr>
+            </thead>
+            <tbody>
+        {/first}
+
+    <tr>
+        <td>
+            <a n:href="Events:detail $event->id">{$event->title}</a>
+        </td>
+        <td>
+            {$event->part}
+        </td>
+        <td>
+            {if $event->start > $now}
+                {$event->start}
+            {elseif $event->end > $now}
+                <span class="loading">Probíhá</span>
+            {else}
+                <span style="color:darkred">{$event->start}</span>
+            {/if}
+        </td>
+    {if $user->isInRole('admin') || $user->isInRole('storyteller')}
+        <td>
+            <a n:href="Events:edit $event->id">Uprav</a>
+        </td>
+    {/if}
+        </tr>
+        {last}
+            </tbody>
+            </table>
+        {/last}
+    {/foreach}
+
+{/block}

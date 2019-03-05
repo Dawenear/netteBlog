@@ -1,0 +1,83 @@
+{**
+ * @param string   $basePath web base path
+ * @param array    $flashes  flash messages
+ *}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+
+    <title>{ifset title}{include title|stripHtml} | {/ifset}Zirael</title>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="{$basePath}/css/style.css">
+    <meta name="viewport" content="width=device-width">
+    {block head}{/block}
+</head>
+
+<body>
+<a href="#" class="back-to-top">Back to Top</a>
+
+<div class="obsah">
+
+    <div class="head one">
+        <table>
+            <tr>
+                <td class="headslinks bord">
+                    <a n:href="Homepage:default" class="headlink">Novinky</a>
+                </td>
+                <td class="headslinks bord">
+                    <a n:href="Events:default" class="headlink">Eventy</a>
+                </td>
+                <td class="headslinks bord">
+                    <a n:href="Gmt:default" class="headlink">GMT</a>
+                </td>
+                <td class="headslinks bord">
+                    <a n:href="Patch:" class="headlink">Patch</a>
+                </td>
+                <td class="headslinks">
+                    {if $user->loggedIn}
+                        <div class="dropdown">
+                            <button class="btn btn-link headlink dropdown-toggle" type="button" data-toggle="dropdown">
+                                {$user->identity->username}
+                                <span class="caret"></span></button>
+                            <ul class="dropdown-menu">
+                                {if $user->isInRole('admin')}
+                                <li><a n:href="Admin:">Administrace</a></li>
+                                {/if}
+                                <li><a n:href="Settings:">Nastaveni</a></li>
+                                <li><a n:href="Sign:out">Odhlásit</a></li>
+                            </ul>
+                        </div>
+                    {else}
+                        <a n:href="Sign:in" class="headlink">Přihlásit</a>
+                    {/if}
+                </td>
+            </tr>
+        </table>
+    </div>
+    <a href="http://wiki.dawenear.eu" class="wiki"></a>
+    <a href="Facebook">
+        <div class="facebook"></div>
+    </a>
+    <a href="http://forum.dawenear.eu" class="forum"></a>
+
+    <div n:foreach="$flashes as $flash" n:class="flash, $flash->type">{$flash->message}</div>
+
+    {include content}
+</div>
+{block scripts}
+    <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+    <script src="https://nette.github.io/resources/js/netteForms.min.js"></script>
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    {*	<script src="{$basePath}/js/main.js"></script>
+        <script type="text/javascript">
+            $('body').prepend('<a href="#" class="back-to-top">Back to Top</a>');
+        </script>
+    *}
+{/block}
+</body>
+</html>

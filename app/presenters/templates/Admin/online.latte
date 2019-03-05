@@ -1,0 +1,45 @@
+{block title}
+    Online
+{/block}
+
+{block content}
+    <h1>Online hráči</h1>
+
+    <table>
+        <thead>
+        <tr>
+            <td>
+                Character
+            </td>
+            <td>
+                Hráč
+            </td>
+            <td>
+                Rasa
+            </td>
+            <td>
+                Povolání
+            </td>
+        </tr>
+        </thead>
+        <tbody>
+        {foreach $players as $player}
+            <tr>
+                <td>
+                    {$player->name}
+                </td>
+                <td>
+                    {$player->username}
+                </td>
+                <td>
+                    {$player->race}
+                </td>
+                <td>
+                    {$player->class}
+                </td>
+            </tr>
+        {/foreach}
+        </tbody>
+    </table>
+
+{/block}

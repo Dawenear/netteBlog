@@ -1,0 +1,25 @@
+{block title}
+    Nový event
+{/block}
+
+{block content}
+<h1>Nový event</h1>
+
+{control eventForm}
+
+
+{/block}
+
+{block scripts}
+    <script>
+        Nette.toggle = function (id, visible) {
+            var el = $('#' + id);
+            if (visible) {
+                el.slideDown();
+            } else {
+                el.slideUp();
+            }
+        };
+    </script>
+
+{/block}

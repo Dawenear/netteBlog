@@ -1,0 +1,23 @@
+{block title}
+    {$event->title}
+{/block}
+
+{block content}
+
+    <h1 class="center">{$event->title}</h1>
+    {if $user->isInRole('admin') || $user->isInRole('storyteller')}
+        <div class="eventModeration">
+            <a n:href="Events:edit $event->id">Uprav event</a>
+        </div>
+    {/if}
+
+    <div>Linka: {$story}</div>
+    <div>Kdy: {$event->start}</div>
+    <div>Do: {$event->end}</div>
+    <div>Kde: {$event->place}</div>
+    <div>Organizátor: {$event->organizator}</div>
+    <span>Popis: {$event->description}</span><br><br>
+
+    <br><br>
+
+{/block}

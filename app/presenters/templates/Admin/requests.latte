@@ -1,0 +1,66 @@
+{block title}
+    Správa žádostí
+{/block}
+
+{block content}
+    <h1 class="center">Správa žádostí</h1>
+    <table>
+    {foreach $requests as $request}
+        <tr>
+            <td colspan="2" class="center">
+                <center>
+                {$request->username}
+                </center>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Email:
+            </td>
+            <td>
+                {$request->email}
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Praxe:
+            </td>
+            <td>
+                {$request->experiences}
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Doporuceni:
+            </td>
+            <td>
+                {$request->recommendation}
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Poznamka:
+            </td>
+            <td>
+                {$request->notes}
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <div class="dropdown">
+                    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+                        Akce
+                        <span class="caret"></span></button>
+                    <ul class="dropdown-menu">
+                        <li><a n:href="requestAccept! $request->id">Povolit</a></li>
+                        <li><a n:href="requestRefuse! $request->id">Odmitnout</a></li>
+                        <li><a n:href="requestDelete! $request->id">Smazat</a></li>
+                    </ul>
+                </div>
+            </td>
+        </tr>
+
+        <br><br>
+    {/foreach}
+    </table>
+{/block}
